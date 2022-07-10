@@ -1,6 +1,6 @@
 import os
 
-from sqlalchemy import create_engine
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from datetime import date as dt
 from dotenv import load_dotenv
@@ -12,10 +12,10 @@ app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
 
 # Configure sqlalchemy to use birthdays
-engine = create_engine(os.getenv("DB_URI"))
-db = engine.connect()
+db = SQLAlchemy(app).create_engine(os.getenv("DB_URI"), engine_opts={})
 
 
 @app.after_request
@@ -30,7 +30,6 @@ def after_request(response):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-
         # TODO: Add the user's entry into the database
         error = ""
         name = request.form.get("name")
@@ -76,4 +75,6 @@ def index():
         birthdays = db.execute("SELECT * FROM birthdays")
         return render_template("index.html", birthdays=birthdays)
 
+if __name__ == "__main__":
+    app.run()
 
