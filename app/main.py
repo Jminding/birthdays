@@ -3,6 +3,9 @@ import os
 from sqlalchemy import create_engine
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from datetime import date as dt
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configure application
 app = Flask(__name__)
@@ -10,10 +13,9 @@ app = Flask(__name__)
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-# Configure CS50 Library to use SQLite database
-engine = create_engine(os.getenv("BDAY_DATABASE"))
+# Configure sqlalchemy to use birthdays
+engine = create_engine(os.getenv("DB_URI"))
 db = engine.connect()
-# db = sqlite3.connect('birthdays.db', check_same_thread=False)
 
 
 @app.after_request
