@@ -48,7 +48,7 @@
                         {% for birthday in birthdays %}
                         <tr>
                             <td>{{ birthday.name }}</td>
-                            <td>{{ (birthday.month|string).zfill(2) }}/{{ (birthday.day|string).zfill(2) }}/{{ birthday.year }}</td>
+                            <td>{{ (birthday.month|string).zfill(2) }}/{{ (birthday.day|string).zfill(2) }}/{{ (birthday.year|string).zfill(4) }}</td>
                             <td>{{ birthday.age }}</td>
                         </tr>
                         {% endfor %}
