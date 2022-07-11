@@ -11,4 +11,4 @@ sqlalchemy
 psycopg2
 flask-sqlalchemy
 datetime
-dotenv
+python-dotenv
