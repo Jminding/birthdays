@@ -1,5 +1,4 @@
 import os
-
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from datetime import date as dt
