@@ -11,10 +11,9 @@ app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
 
 # Configure sqlalchemy to use birthdays
-db = create_engine(os.getenv("DB_URI"))
+db = create_engine(os.environ['bday_db'])
 
 
 @app.after_request
@@ -55,14 +54,9 @@ def index():
                 error = "Updated birthday."
             else:
                 db.execute(
+                    f"""
+                    INSERT INTO birthdays (name, month, day, year, age) VALUES ('{name}', {month}, {day}, {year}, {age})
                     """
-                    INSERT INTO birthdays (name, month, day, year, age) VALUES(?, ?, ?, ?, ?)
-                    """,
-                    name,
-                    month,
-                    day,
-                    year,
-                    age,
                 )
                 error = "Added birthday!"
         birthdays = db.execute("SELECT * FROM birthdays")
