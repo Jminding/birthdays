@@ -62,17 +62,9 @@
             let name = document.getElementById("name");
             let date = document.getElementById("date");
             document.getElementById("submitbtn").onclick = () => {
-                if (name.value != "" && date.value != "") {    
-                    console.log(name.value);
-                    console.log(date.value);
-                    localStorage.setItem("name", name.value);
-                    localStorage.setItem("date", date.value);
-                }
+                console.log(name.value);
+                console.log(date.value);
             };
-            window.onload = () => {
-                name.value = localStorage.getItem("name");
-                date.value = localStorage.getItem("date");
-            }
             date.max = new Date().toLocaleDateString('en-ca')
         </script>
     </body>
