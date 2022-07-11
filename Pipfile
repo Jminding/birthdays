@@ -6,6 +6,17 @@ name = "pypi"
 [packages]
 flask = "*"
 gunicorn = "*"
+click = "*"
+importlib-metadata = "*"
+itsdangerous = "*"
+Jinja2 = "*"
+MarkupSafe = "*"
+Werkzeug = "*"
+zipp = "*"
+sqlalchemy = "*"
+psycopg2 = "*"
+flask-sqlalchemy = "*"
+datetime = "*"
 
 [dev-packages]
 
