@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import *
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from datetime import date as dt
 from dotenv import load_dotenv
