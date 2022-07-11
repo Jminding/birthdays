@@ -1,5 +1,5 @@
 import os
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from datetime import date as dt
 from dotenv import load_dotenv
@@ -14,7 +14,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
 
 # Configure sqlalchemy to use birthdays
-db = SQLAlchemy(app).create_engine(os.getenv("DB_URI"), engine_opts={})
+db = create_engine(os.getenv("DB_URI"))
 
 
 @app.after_request
